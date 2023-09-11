@@ -1,0 +1,129 @@
+import React,{useState} from 'react'
+
+function TextForm(props) {
+    const[btnstyle,setBtnstyle]=useState({
+        color:'white',
+        backgroundColor:'black',
+        border:'3px solid gray'
+    })
+    const [mystyle,setMystyle]=useState({
+        color:'black',
+        backgroundColor:'white',
+        border:'2px solid blue'
+        
+    })
+    const [copybtntxt,setCopybtntxt]=useState('Copy text');
+    const[btntext,setBtntext]=useState("Enable Dark Mode");
+    const togglemode=()=>{
+        if (mystyle.color === "black"&&btnstyle.color==="white") {
+            setMystyle({
+                color:'white',
+                backgroundColor:'black',
+                border:'2px solid blue'
+            })
+            setBtntext('Enable Light Mode');
+            setBtnstyle({
+                color:'black',
+                backgroundColor:'white',
+                border:'3px solid gray'
+            })
+        }
+        else{
+            setMystyle({
+                color:'black',
+                backgroundColor:'white',
+                border:'2px solid blue'
+            })
+            setBtntext('Enable Dark Mode');
+            setBtnstyle({
+                color:'white',
+                backgroundColor:'black',
+                border:'3px solid gray'   
+            })
+        }
+ 
+    }
+ 
+    const [text,setText]=useState('')
+    const handleUpclick=()=>{
+        let newtext=text.toUpperCase();
+        setText(newtext)
+    }
+    const onchangehandle=(event)=>{
+        setText(event.target.value)
+        setCopybtntxt("Copy text");
+    }
+    const clearText=()=>{
+        let newtext='';
+        setText(newtext)
+    }
+    const handleLowclick=()=>{
+        let newtext=text.toLowerCase();
+        setText(newtext);
+    }
+   
+    const handleTitleclick=()=>{
+    try {
+        let lowercasestring=text.toLowerCase();
+        let userinputtitletext=lowercasestring.split(' ');
+        let titlearray=userinputtitletext.map((word)=>{
+            return word[0].toUpperCase()+word.slice(1);
+        })
+        let titlesentence=titlearray.join(' ');
+        setText(titlesentence);
+    } catch (error) {
+        alert("Please insert the text ");
+    }
+       
+    }
+const handleCopyText=()=>{
+if (copybtntxt==="Copy text") {
+    let text=document.getElementById('mybox');
+    text.select();
+    navigator.clipboard.writeText(text.value);
+    setCopybtntxt("Copied");  
+}
+else{
+    let text=document.getElementById('mybox');
+    text.select();
+    navigator.clipboard.writeText(text.value);
+    setCopybtntxt("Copy text"); 
+}
+
+
+// alert("Copied to clipboard");
+
+}
+const handleExtraspace=()=>{
+let newtext=text.split(/[  ]+/);
+let removedspace=newtext.join(' ');
+setText(removedspace);
+
+}
+
+  return (
+    <>
+    <div className='container  ml-10 mt-5'>
+        <div className="flex flex-row">    
+        <h1 className='text-4xl text-black'>{props.text}</h1>
+        <button className="p-2  text-xl h-17 w-25 mt-1 ml-10 mb-5 rounded" style={btnstyle} onClick={togglemode}>{btntext}</button>
+        </div>
+        <textarea  style={mystyle} placeholder="Type Your Text here "value={text} id="mybox" onChange={onchangehandle} className='block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg '  rows="8"></textarea>
+        <button onClick={handleUpclick} className=' hover:bg-blue-900 p-2  text-xl h-17 w-25 bg-blue-700 mt-4 rounded  text-slate-50'>Upper case</button>
+        <button onClick={handleLowclick} className='  hover:bg-blue-900 p-2 ml-3 text-xl h-17 w-25 bg-blue-700 mt-4 rounded  text-slate-50'>Lower case</button>
+        <button onClick={handleTitleclick} className='  hover:bg-blue-900 p-2 ml-3 text-xl h-17 w-25 bg-blue-700 mt-4 rounded  text-slate-50'>Title case</button>
+        <button onClick={handleExtraspace} className='  hover:bg-blue-900 p-2 ml-3 text-xl h-17 w-25 bg-blue-700 mt-4 rounded  text-slate-50'>Remove space</button>
+        <button onClick={handleCopyText} className='  hover:bg-blue-900 p-2 ml-3 text-xl h-17 w-25 bg-blue-700 mt-4 rounded  text-slate-50'>{copybtntxt}</button>
+        <button onClick={clearText} className='  hover:bg-blue-900 p-2 ml-3 text-xl h-17 w-25 bg-blue-700 mt-4 rounded  text-slate-50'>Clear text</button>
+        
+    </div>
+    <div className=' container ml-10 mt-5'>
+    <p className='text-4xl'><b>Your Text Summary</b></p>
+    <p className='mt-3'> No of words:{text.split(" ").length}</p>
+    <p className='mt-3'>No of characters:{text.length}</p>
+    </div>
+    </>
+  )
+}
+
+export default TextForm
