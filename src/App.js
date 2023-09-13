@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 const router=createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Navbar/>}>
+  <Route path="/" element={<TextForm text="Enter the text below"/>}></Route> 
   <Route path="/TextForm" element={<TextForm text="Enter the text below"/>}></Route> 
   <Route path="/About" element={<About/>}></Route>
   </Route>
