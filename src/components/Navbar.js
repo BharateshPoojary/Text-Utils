@@ -2,6 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Outlet,NavLink } from 'react-router-dom';
+import TextForm from './TextForm';
 
   function Navbar (props) {
   return (  
@@ -21,7 +22,8 @@ import { Outlet,NavLink } from 'react-router-dom';
     </nav>
       <div>
       <Outlet/>
-    </div>
+      </div>
+    
     </>
   )
 }
