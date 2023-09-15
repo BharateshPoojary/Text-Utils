@@ -81,6 +81,7 @@ if (copybtntxt==="Copy text") {
     let text=document.getElementById('mybox');
     text.select();
     navigator.clipboard.writeText(text.value);
+    document.getSelection().removeAllRanges();
     setCopybtntxt("Copied");  
 }
 else{
@@ -119,7 +120,7 @@ setText(removedspace);
     </div>
     <div className=' container ml-10 mt-5'>
     <p className='text-4xl'><b>Your Text Summary</b></p>
-    <p className='mt-3'> No of words:{text.split(" ").length}</p>
+    <p className='mt-3'> No of words:{text.split(/\s+/).filter((element)=>{return element.length!==0}).length}</p>
     <p className='mt-3'>No of characters:{text.length}</p>
     </div>
     </>
