@@ -88,11 +88,12 @@ else{
     let text=document.getElementById('mybox');
     text.select();
     navigator.clipboard.writeText(text.value);
+    
+    document.getSelection().removeAllRanges();
     setCopybtntxt("Copy text"); 
 }
 
 
-// alert("Copied to clipboard");
 
 }
 const handleExtraspace=()=>{
