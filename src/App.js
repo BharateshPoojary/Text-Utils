@@ -1,14 +1,14 @@
-import './App.css';
-import About from './components/About';
-import Navbar from './components/Navbar';
-import TextForm from './components/TextForm';
-import React from "react";
+import './App.css';//importing the css page
+import About from './components/About';//importing the about component
+import Navbar from './components/Navbar';//imposting the nav component
+import TextForm from './components/TextForm';//importing Textform component
+import React from "react";//importing react library
 import {
   Route,
   createBrowserRouter,
   createRoutesFromElements,
   RouterProvider, 
-} from "react-router-dom";
+} from "react-router-dom";//importing required elements for routing
 const router=createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<Navbar/>}>
   <Route path="/" element={<TextForm text="Enter the text below"/>}></Route> 
@@ -17,7 +17,6 @@ const router=createBrowserRouter(createRoutesFromElements(
   </Route>
 ));
 function App() {
-
   return (
     <RouterProvider router={router}/>
   );
