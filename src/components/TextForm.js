@@ -1,5 +1,5 @@
 import React,{useState} from 'react'//importing react library
-//importing usestate for modifying contents
+//importing usestate for modifying the state of variable 
 
 function TextForm(props) {
     const[btnstyle,setBtnstyle]=useState({//changing dark/light mode button style
@@ -13,8 +13,8 @@ function TextForm(props) {
         border:'2px solid blue'
         
     })
-    const [copybtntxt,setCopybtntxt]=useState('Copy text');//copy text button
-    const[btntext,setBtntext]=useState("Enable Dark Mode");//changing the text inside  dark/light mode button 
+    const [copybtntxt,setCopybtntxt]=useState('Copy text');//copy text button variable
+    const[btntext,setBtntext]=useState("Enable Dark Mode");//changing the text inside  dark/light mode button varaiable
     //function which toggle between dark/light mode
     const togglemode=()=>{
         if (mystyle.color === "black"&&btnstyle.color==="white") {
